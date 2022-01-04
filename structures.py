@@ -35,21 +35,20 @@ class Graph:
 
         # feel free to change
         options = {
-            "node_size": 3000,
+            "node_size": 1500,
             "node_color": "white",
             "edgecolors": "black",
-            "linewidths": 5,
-            "width": 5,
+            "linewidths": 2,
+            "width": 2,
             "verticalalignment": "top"
         }
 
         pos = nx.spring_layout(G)
 
         nx.draw_networkx(G, pos, **options)
-        nx.draw_networkx_labels(G, pos, {v: self.v_labels[v] for v in range(n)}, font_size=30, verticalalignment="baseline")
+        nx.draw_networkx_labels(G, pos, {v: self.v_labels[v] for v in range(n)}, font_size=15, verticalalignment="baseline")
         nx.draw_networkx_edge_labels(G, pos, edges)
-
-        plt.show()
+        return plt.gcf()
 
     ''' feel free to implement your class methods'''
 
@@ -65,7 +64,8 @@ class Production:
 
 
 # example - make sure arguments are correct - otherwise exception is thrown
-G = Graph(
+if __name__ == '__main__':
+    G = Graph(
     ["A", "B", "C"],
     [
         [(1, "a"), (2, "b")],
@@ -73,6 +73,6 @@ G = Graph(
         [(0, "b"), (1, "c")]
     ])
 
-G.visualize()
+    G.visualize().show()
 
 
