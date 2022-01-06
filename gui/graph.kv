@@ -1,18 +1,2 @@
-#:kivy 1.0.9
-<GraphViz>:
-    canvas:
-        Rectangle:
-            pos: self.center_x - 5, (1/2)*self.height
-            size: 10, self.height*(1/2)
-
-    Button:
-        text: 'press me'
-        pos:
-        on_press: print("ouch! More gently please")
-
 <Matty>:
-    BoxLayout:
-        id:box
-        size_hint_y: .8
-        pos_hint: {"top":1}
-
+    orientation:'vertical'

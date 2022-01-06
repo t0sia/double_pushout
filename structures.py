@@ -26,6 +26,7 @@ class Graph:
         return True
 
     def visualize(self):
+        plt.figure()
         n = len(self.v_labels)
         edges = {(v1, v2): label for v1 in range(n) for v2, label in self.adjacency_list[v1]}
 
@@ -35,18 +36,18 @@ class Graph:
 
         # feel free to change
         options = {
-            "node_size": 1500,
+            "node_size": 500,
             "node_color": "white",
             "edgecolors": "black",
-            "linewidths": 2,
-            "width": 2,
+            "linewidths": 0.5,
+            "width": 0.5,
             "verticalalignment": "top"
         }
 
         pos = nx.spring_layout(G)
 
         nx.draw_networkx(G, pos, **options)
-        nx.draw_networkx_labels(G, pos, {v: self.v_labels[v] for v in range(n)}, font_size=15, verticalalignment="baseline")
+        nx.draw_networkx_labels(G, pos, {v: self.v_labels[v] for v in range(n)}, font_size=10, verticalalignment="baseline")
         nx.draw_networkx_edge_labels(G, pos, edges)
         return plt.gcf()
 
