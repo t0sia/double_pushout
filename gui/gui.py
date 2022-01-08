@@ -58,7 +58,7 @@ class GraphProd(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.orientation = 'horizontal'
-        self.add_widget(Button(text='Choose', font_size=14))
+        self.add_widget(Button(text='Choose', font_size=14,size_hint=(0.4,1)))
         self.add_widget(Label(text="P1:", size_hint=(0.1, 1)))
         self.add_widget(Label(text="L:", size_hint=(0.1, 1)))
         self.add_widget(FigureCanvasKivyAgg(L.visualize()))
