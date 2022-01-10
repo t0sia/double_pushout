@@ -109,18 +109,18 @@ def parse(f):
 
 # test co
 if __name__ == "__main__":
-    f = open("ex1.txt")
 
-    grammar = parse(f)
-    g = grammar.input_graph
-    prods = grammar.production_list
-    g.visualize()
-    plt.show()
+    with open("ex4.txt") as f:
+        grammar = parse(f)
+        g = grammar.input_graph
+        prods = grammar.production_list
+        g.visualize()
+        plt.show()
 
-    for prod in prods:
-        prod.left.visualize()
-        plt.show()
-        prod.connector.visualize()
-        plt.show()
-        prod.right.visualize()
-        plt.show()
+        for prod in prods:
+            prod.left.visualize()
+            plt.show()
+            prod.connector.visualize()
+            plt.show()
+            prod.right.visualize()
+            plt.show()
