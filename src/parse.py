@@ -1,7 +1,6 @@
 from matplotlib import pyplot as plt
-from src.structures import Grammar, Graph, Production 
+from structures import Grammar, Graph, Production
 
-f = open("ex1.txt")
 
 def get_breaks(f):
     breaks = []
@@ -11,22 +10,22 @@ def get_breaks(f):
     for i, line in f:
 
         if line == "-->\n":
-            labels = i+1
-            start = i+2
-        
+            labels = i + 1
+            start = i + 2
+
         elif line == "--<\n":
-            stop = i-1
-            
+            stop = i - 1
+
             if breaks != []:
                 cut += 1
-        
+
             if cut % 3 == 0:
                 dict = 0
             breaks.append((labels, start, stop))
 
         elif line == "---\n" and cut % 3 == 0 and dict == 0:
-            dict1 = i+1
-            dict2 = i+3
+            dict1 = i + 1
+            dict2 = i + 3
             dict = 1
             dicts.append((dict1, dict2))
 
@@ -39,7 +38,7 @@ def read_vlabels(f, s):
     for j in line:
         if j != " " and j != "\n":
             vlabels.append(j)
-    return vlabels       
+    return vlabels
 
 
 def read_edges(f, start, stop):
@@ -48,10 +47,10 @@ def read_edges(f, start, stop):
         if i >= start and i <= stop:
             edges.append(get_edge(line))
     return edges
-            
+
 
 def get_edge(s):
-    return (int(s[0]), s[2], int(s[4])) 
+    return (int(s[0]), s[2], int(s[4]))
 
 
 def edges_to_adj(e, n):
@@ -90,7 +89,7 @@ def get_graph(f, labels, start, stop):
 def parse(f):
     ef = list(enumerate(f))
     breaks, dicts = get_breaks(ef)
-    G = get_graph(ef, breaks[0][0], breaks[0][1], breaks[0][2]) 
+    G = get_graph(ef, breaks[0][0], breaks[0][1], breaks[0][2])
 
     prods = []
     lkr = []
@@ -99,26 +98,29 @@ def parse(f):
         g = get_graph(ef, labels, start, stop)
         lkr.append(g)
         if i % 3 == 0:
-            dict = make_dict(ef, dicts[i//3 - 1][0], dicts[i//3 - 1][1])
-            prods.append(Production(lkr[0], lkr[1], lkr[2], dict)) 
-            #prods.append((lkr[0], lkr[1], lkr[2]))
+            dict = make_dict(ef, dicts[i // 3 - 1][0], dicts[i // 3 - 1][1])
+            prods.append(Production(lkr[0], lkr[1], lkr[2], dict))
+            # prods.append((lkr[0], lkr[1], lkr[2]))
             lkr = []
 
     return Grammar(G, prods)
-    #return G, prods
+    # return G, prods
 
 
-## test co
+# test co
+if __name__ == "__main__":
+    f = open("ex1.txt")
 
-# g, prods = parse(f)
-# g.visualize().show()
-# plt.show()
+    grammar = parse(f)
+    g = grammar.input_graph
+    prods = grammar.production_list
+    g.visualize()
+    plt.show()
 
-# for l, k, r in prods:
-#     l.visualize().show()
-#     plt.show()
-#     k.visualize().show()
-#     plt.show()
-#     r.visualize().show()
-#     plt.show()
-
+    for prod in prods:
+        prod.left.visualize()
+        plt.show()
+        prod.connector.visualize()
+        plt.show()
+        prod.right.visualize()
+        plt.show()
