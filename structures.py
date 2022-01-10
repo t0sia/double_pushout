@@ -51,15 +51,47 @@ class Graph:
         nx.draw_networkx_edge_labels(G, pos, edges)
         return plt.gcf()
 
+    def remove(self, i):
+        self.v_labels.pop(i)
+        for v in range(len(self.adjacency_list)):
+            newV = []
+            for a in self.adjacency_list[v]:
+                if a[0] < i:
+                    newV.append(a)
+                else:
+                    if a[0] > i:
+                        newV.append((a[0] - 1, a[1]))
+            self.adjacency_list[v] = newV
+        self.adjacency_list.pop(i)
+
+    def remove_edge(self, edges, GV):
+        for k in edges:
+            edge = (GV[k[0]], k[1])
+            for tab in self.adjacency_list:
+                if edge in tab:
+                    tab.remove(edge)
+
+    def add_node(self, label, edges, KR, i):
+        self.v_labels.append(label)
+        edge_list = []
+        for edge in edges:
+            if KR[edge[0]] is not None:
+                edge_list.append((KR[edge[0]], edge[1]))
+                self.adjacency_list[KR[edge[0]]].append((len(self.v_labels) - 1, edge[1]))
+        self.adjacency_list.append(edge_list)
+        KR[i] = len(self.v_labels) - 1
+        return KR
+
     ''' feel free to implement your class methods'''
 
 
 class Production:
     # just making type hints
-    def __init__(self, left: Graph, connector: Graph, right: Graph):
+    def __init__(self, left: Graph, connector: Graph, right: Graph, dict_array):
         self.left = left
         self.connector = connector
         self.right = right
+        self.dict = dict_array
 
     ''' feel free to implement your class methods'''
 
