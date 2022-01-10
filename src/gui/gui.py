@@ -5,7 +5,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 
-from structures import Graph
+from src.structures import Graph
 from kivy.uix.floatlayout import FloatLayout
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 
@@ -27,7 +27,7 @@ D = Graph(
         [(0, "b"), (1, "c")]
     ])
 
-#produkcje przykladowe
+# produkcje przykladowe
 
 L = Graph(
     ["D", "E", "F"],

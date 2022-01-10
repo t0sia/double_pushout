@@ -1,4 +1,4 @@
-import structures
+from src import structures
 
 
 def check_vs(graph: Graph, prod: Graph, v, u):

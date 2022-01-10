@@ -47,7 +47,8 @@ class Graph:
         pos = nx.spring_layout(G)
 
         nx.draw_networkx(G, pos, **options)
-        nx.draw_networkx_labels(G, pos, {v: self.v_labels[v] for v in range(n)}, font_size=10, verticalalignment="baseline")
+        nx.draw_networkx_labels(G, pos, {v: self.v_labels[v] for v in range(n)}, font_size=10,
+                                verticalalignment="baseline")
         nx.draw_networkx_edge_labels(G, pos, edges)
         return plt.gcf()
 
@@ -96,16 +97,23 @@ class Production:
     ''' feel free to implement your class methods'''
 
 
+class Grammar:
+    # just making type hints
+    def __init__(self, input_graph: Graph, production_list: List[Production]):
+        self.input_graph = input_graph
+        self.production_list = production_list
+
+
 # example - make sure arguments are correct - otherwise exception is thrown
 if __name__ == '__main__':
     G = Graph(
-    ["A", "B", "C"],
-    [
-        [(1, "a"), (2, "b")],
-        [(0, "a"), (2, "c")],
-        [(0, "b"), (1, "c")]
-    ])
+        ["A", "B", "C"],
+        [
+            [(1, "a"), (2, "b")],
+            [(0, "a"), (2, "c")],
+            [(0, "b"), (1, "c")]
+        ]
+    )
 
-    G.visualize().show()
-
-
+    G.visualize()
+    plt.show()
