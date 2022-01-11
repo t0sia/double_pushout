@@ -34,10 +34,7 @@ def get_breaks(f):
 
 def read_vlabels(f, s):
     line = f[s][1]
-    vlabels = []
-    for j in line:
-        if j != " " and j != "\n":
-            vlabels.append(j)
+    vlabels = line.split()
     return vlabels
 
 
@@ -50,7 +47,10 @@ def read_edges(f, start, stop):
 
 
 def get_edge(s):
-    return (int(s[0]), s[2], int(s[4]))
+    res = s.split()
+    res[0] = int(res[0])
+    res[len(res)-1] = int(res[len(res)-1])
+    return res
 
 
 def edges_to_adj(e, n):
@@ -62,13 +62,14 @@ def edges_to_adj(e, n):
 
 
 def read_dict(f, d):
-    dict = []
     line = f[d][1]
-    for el in line:
+    dict = line.split()
+    for el in dict:
         if el == "-":
-            dict.append(None)
-        elif el != " " and el != "\n":
-            dict.append(int(el))
+            el = None
+        else:
+            el = int(el)
+
     return dict
 
 
@@ -100,17 +101,15 @@ def parse(f):
         if i % 3 == 0:
             dict = make_dict(ef, dicts[i // 3 - 1][0], dicts[i // 3 - 1][1])
             prods.append(Production(lkr[0], lkr[1], lkr[2], dict))
-            # prods.append((lkr[0], lkr[1], lkr[2]))
             lkr = []
 
     return Grammar(G, prods)
-    # return G, prods
 
 
 # test co
 if __name__ == "__main__":
 
-    with open("ex4.txt") as f:
+    with open("src\ex4.txt") as f:
         grammar = parse(f)
         g = grammar.input_graph
         prods = grammar.production_list
