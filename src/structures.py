@@ -90,7 +90,7 @@ class Graph:
 
 class Production:
     # just making type hints
-    def __init__(self, left: Graph, connector: Graph, right: Graph, dict_array):
+    def __init__(self, left: Graph, connector: Graph, right: Graph):
         self.left = left
         self.connector = connector
         self.right = right
