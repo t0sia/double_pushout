@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 import networkx as nx
 from matplotlib import pyplot as plt
@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 # structure representing graph
 class Graph:
     # just making type hints
-    def __init__(self, v_labels: List[str], adjacency_list: List[List[Tuple[int, str]]]):
+    def __init__(self, v_labels: Dict[int, str], adjacency_list: Dict[int, List[Tuple[int, str]]]):
         self.v_labels = v_labels
         self.adjacency_list = adjacency_list
         if not self.is_correct():
@@ -15,10 +15,13 @@ class Graph:
 
     # checking if adjacency list is correct and coherent with vertex labels
     def is_correct(self):
-        if len(self.v_labels) != len(self.adjacency_list):
+        # check if indexes (keys) are matching
+        if set(self.v_labels.keys()) != set(self.adjacency_list.keys()):
             return False
 
-        for v1 in range(len(self.adjacency_list)):
+        # iterate over keys
+        for v1 in self.adjacency_list:
+            # iterate over elements
             for v2, label in self.adjacency_list[v1]:
                 if not (v1, label) in self.adjacency_list[v2]:
                     return False
@@ -27,11 +30,10 @@ class Graph:
 
     def visualize(self):
         plt.figure()
-        n = len(self.v_labels)
-        edges = {(v1, v2): label for v1 in range(n) for v2, label in self.adjacency_list[v1]}
+        edges = {(v1, v2): label for v1 in self.adjacency_list for v2, label in self.adjacency_list[v1]}
 
         G = nx.Graph()
-        G.add_nodes_from(range(n))
+        G.add_nodes_from(index for index in self.v_labels)
         G.add_edges_from(edges.keys())
 
         # feel free to change
@@ -47,7 +49,7 @@ class Graph:
         pos = nx.spring_layout(G)
 
         nx.draw_networkx(G, pos, **options)
-        nx.draw_networkx_labels(G, pos, {v: self.v_labels[v] for v in range(n)}, font_size=10,
+        nx.draw_networkx_labels(G, pos, {v: self.v_labels[v] for v in self.adjacency_list}, font_size=10,
                                 verticalalignment="baseline")
         nx.draw_networkx_edge_labels(G, pos, edges)
         return plt.gcf()
@@ -92,7 +94,6 @@ class Production:
         self.left = left
         self.connector = connector
         self.right = right
-        self.dict = dict_array
 
     ''' feel free to implement your class methods'''
 
@@ -102,17 +103,19 @@ class Grammar:
     def __init__(self, input_graph: Graph, production_list: List[Production]):
         self.input_graph = input_graph
         self.production_list = production_list
+        # to be able to go back once
+        self.previous_graph = None
 
 
 # example - make sure arguments are correct - otherwise exception is thrown
 if __name__ == '__main__':
     G = Graph(
-        ["A", "B", "C"],
-        [
-            [(1, "a"), (2, "b")],
-            [(0, "a"), (2, "c")],
-            [(0, "b"), (1, "c")]
-        ]
+        {5: "A", 1: "B", 2: "C"},
+        {
+            5: [(1, "a"), (2, "b")],
+            1: [(5, "a"), (2, "c")],
+            2: [(5, "b"), (1, "c")]
+        }
     )
 
     G.visualize()
