@@ -1,77 +1,67 @@
-from structures import Graph, Production
+from structures import Graph, Production, Grammar
+from copy import deepcopy
 
 
-def check_vs(graph: Graph, prod: Graph, v, u):
+def check_node(graph: Graph, prod: Graph, v, u, prod_dict, A):
     if graph.v_labels[v] != prod.v_labels[u]:
         return False
     prodIt = 0
-    adjacencyProd = prod.adjacency_list[u]
-    adjacencyGraph = graph.adjacency_list[v]
+    adjacencyProd = deepcopy(prod.adjacency_list[u])
+    adjacencyGraph = deepcopy(graph.adjacency_list[v])
     for i in adjacencyProd:
-        graphIt = 0
-        for j in adjacencyGraph:
-            if i[1] == j[1] and graph.v_labels[j[0]] == prod.v_labels[i[0]]:
-                adjacencyGraph.pop(graphIt)
-                prodIt += 1
-                break
-            graphIt += 1
+        temp = (A[prod_dict.index(i[0])], i[1])
+        if temp in adjacencyGraph:
+            prodIt += 1
+            adjacencyGraph.remove(temp)
     if len(adjacencyProd) == prodIt:
         return True
     return False
 
 
-def check_if_right(graph: Graph, left: Graph, v1, v2):
-    if len(v1) != len(v2):
+def check_if_right(G: Graph, L: Graph, Nodes, L_dict, A):
+    if len(Nodes) != len(L.adjacency_list):
         raise TypeError("Incorrect number of vertexes.")
-    for i in range(len(v1)):
-        if not check_vs(graph, left, v1[i], v2[i]):
-            raise TypeError("Incorrect vertexes. Change order of vertexes or vertexes.")
+    for i in range(len(Nodes)):
+        if not check_node(G, L, Nodes[i], L_dict[i], L_dict, A):
+            raise TypeError("Incorrect order of vertexes or vertexes.")
     return True
 
 
-def which_edge(A, B):
+def which_edge(L_list, K_list):
     ans = []
-    for i in range(len(A)):
-        val = False
-        for j in range(len(B)):
-            if A[i] == B[j]:
-                val = True
-        if val is False:
-            ans.append(A[i])
+    for i in L_list:
+        if i not in K_list:
+            ans.append(i)
     return ans
 
 
-def first_step(L, K, G, LK, GV):
-    for i in range(len(LK)):
-        if LK[i] is None:
-            G.remove(GV[i])
-            L.remove(i)
-    for i in range(len(K.adjacency_list)):
-        if L.adjacency_list[LK[i]] != K.adjacency_list[i]:
-            edges = which_edge(L.adjacency_list[LK[i]], K.adjacency_list[i])
-            print(edges)
-            G.remove_edge(edges, GV)
+def first_step(L, K, G, givenNodes, L_dict):
+    for i in L.adjacency_list:
+        if i not in K.adjacency_list:
+            G.remove(givenNodes[L_dict.index(i)])
+    for i in L.adjacency_list:
+        if i in K.adjacency_list and L.adjacency_list[i] != K.adjacency_list[i]:
+            edges = which_edge(L.adjacency_list[i], K.adjacency_list[i])
+            G.remove_edge(edges, givenNodes, L_dict)
 
 
-def second_step(G, R, A, GR):
-    for i in range(len(A)):
-        if A[i] is None:
-            GR = G.add_node(R.v_labels[i], R.adjacency_list[i], GR, A, i)
+def second_step(G, R, K, arr, GR):
+    for i in R.adjacency_list:
+        if i not in K.adjacency_list:
+            GR = G.add_node(R.v_labels[i], R.adjacency_list[i], GR, i, arr)
+    for i in R.adjacency_list:
+        if R.adjacency_list[i] != G.adjacency_list[arr[GR.index(i)]]:
+            for k in R.adjacency_list[i]:
+                temp = (arr[GR.index(k[0])], k[1])
+                if temp not in G.adjacency_list[arr[GR.index(i)]]:
+                    G.add_edge(temp, arr[GR.index(i)])
 
 
 def dpo(G, Prod: Production, arr):
-    D = Prod.dict
-    GR = [None]*len(Prod.right.v_labels)
-    LV = []
-    for k in D[1]:
-        if k is not None:
-            GR[D[1].index(k)] = arr[D[0].index(k)]
-    for i in range(len(Prod.left.v_labels)):
-        LV.append(i)
-    if check_if_right(G, Prod.left, arr, LV):
-        G.visualize().show()
-        first_step(Prod.left, Prod.connector, G, D[0], arr)
-        G.visualize().show()
-        second_step(G, Prod.right, D[1], GR)
-        G.visualize().show()
-        
+    L_dict = []
+    for key in Prod.left.adjacency_list.keys():
+        L_dict.append(key)
+    if check_if_right(G, Prod.left, arr, L_dict, arr):
+        first_step(Prod.left, Prod.connector, G, arr, L_dict)
+        GR = deepcopy(L_dict)
+        second_step(G, Prod.right, Prod.connector, arr, GR)
