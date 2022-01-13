@@ -54,36 +54,37 @@ class Graph:
         nx.draw_networkx_edge_labels(G, pos, edges)
         return plt.gcf()
 
-    def remove(self, i):
+        def remove(self, i):
         self.v_labels.pop(i)
-        for v in range(len(self.adjacency_list)):
+        self.adjacency_list.pop(i)
+        for v in self.adjacency_list:
             newV = []
             for a in self.adjacency_list[v]:
-                if a[0] < i:
+                if a[0] != i:
                     newV.append(a)
-                else:
-                    if a[0] > i:
-                        newV.append((a[0] - 1, a[1]))
             self.adjacency_list[v] = newV
-        self.adjacency_list.pop(i)
 
-    def remove_edge(self, edges, GV):
-        for k in edges:
-            edge = (GV[k[0]], k[1])
-            for tab in self.adjacency_list:
-                if edge in tab:
-                    tab.remove(edge)
+    def remove_edge(self, edges, givenNodes, left_dict):
+        for vList in self.adjacency_list:
+            for edge in edges:
+                if (givenNodes[left_dict.index(edge[0])], edge[1]) in self.adjacency_list[vList]:
+                    self.adjacency_list[vList].remove((givenNodes[left_dict.index(edge[0])], edge[1]))
 
-    def add_node(self, label, edges, KR, i):
-        self.v_labels.append(label)
+    def add_node(self, label, edges, GR, i, A):
+        newIndex = max(self.adjacency_list.keys()) + 1
+        self.v_labels[newIndex] = label
         edge_list = []
         for edge in edges:
-            if KR[edge[0]] is not None:
-                edge_list.append((KR[edge[0]], edge[1]))
-                self.adjacency_list[KR[edge[0]]].append((len(self.v_labels) - 1, edge[1]))
-        self.adjacency_list.append(edge_list)
-        KR[i] = len(self.v_labels) - 1
-        return KR
+            if edge[0] in GR:
+                edge_list.append((A[GR.index(edge[0])], edge[1]))
+                self.adjacency_list[A[GR.index(edge[0])]].append((newIndex, edge[1]))
+        self.adjacency_list[newIndex] = edge_list
+        GR.append(i)
+        A.append(newIndex)
+        return GR
+
+    def add_edge(self, edge, node):
+        self.adjacency_list[node].append(edge)
 
     ''' feel free to implement your class methods'''
 
