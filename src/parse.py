@@ -86,7 +86,7 @@ def parse(f):
 # test co
 if __name__ == "__main__":
 
-    with open("src\ex1.txt") as f:
+    with open("ex4.txt") as f:
         grammar = parse(f)
         g = grammar.input_graph
         prods = grammar.production_list

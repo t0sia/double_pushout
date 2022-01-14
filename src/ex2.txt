@@ -1,3 +1,5 @@
+# Input graph
+
 -->
 A A C B B A D D B
 1 2 3 4 5 6 7 8 9
@@ -14,6 +16,8 @@ A A C B B A D D B
 7 a 8
 8 c 9
 --<
+
+# Production 1
 
 -->
 A A D B
@@ -39,7 +43,7 @@ A D B B
 3 c 5
 --<
 
----
+# Production 2
 
 -->
 A B D
@@ -64,7 +68,7 @@ A B D A
 3 a 4
 --<
 
----
+# Production 3
 
 -->
 A D B B
@@ -92,8 +96,7 @@ A D B C
 2 c 5
 --<
 
-
----
+# Production 4
 
 -->
 A B C
@@ -117,11 +120,3 @@ A B B D
 2 b 4
 4 c 5
 --<
-
-
-
-
-
-
-
-

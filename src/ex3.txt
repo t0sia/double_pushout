@@ -1,3 +1,5 @@
+# Input graph
+
 -->
 A A A B B C C
 1 2 3 4 5 6 7
@@ -10,6 +12,8 @@ A A A B B C C
 3 pk 7
 5 k 7
 --<
+
+# Production 1
 
 -->
 A B C
@@ -37,12 +41,7 @@ A A A B C B C
 8 k 9
 --<
 
-
----
-0 - -
----
-0 - - - - - -
----
+# Production 2
 
 -->
 A A A B C
@@ -67,11 +66,7 @@ A A X
 1 dl 6
 --<
 
----
-0 1 - - -
----
-0 1 -
----
+# Production 3
 
 -->
 A X A B C
@@ -96,11 +91,7 @@ A X X
 1 pl 6
 --<
 
----
-0 1 - - -
----
-0 1 -
----
+# Production 4
 
 -->
 A X X
@@ -121,9 +112,3 @@ A B C
 1 pk 5
 4 k 5
 --<
-
----
-0 - -
----
-0 - -
----

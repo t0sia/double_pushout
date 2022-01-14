@@ -1,9 +1,21 @@
-# Graph
-# -->
-# labels
-# edges in format:
-# vi edge_label vj 
-# --<
+# Graph:
+#   -->
+#   labels
+#   indexes
+#   edges in format:
+#   vi edge_label vj
+#   --<
+
+# Production:
+#   Graph
+#   Graph
+#   Graph
+
+# File:
+#   Input Graph
+#   Productions
+
+# Input graph
 
 -->
 A A B B C C
@@ -16,6 +28,8 @@ A A B B C C
 2 b 6
 4 c 6
 --<
+
+# Production 1
 
 -->
 A B C
@@ -40,9 +54,7 @@ A B A A
 4 a 5
 --<
 
-
----
-
+# Production 2
 
 -->
 A B C
@@ -69,8 +81,7 @@ A B C A A
 4 a 5
 --<
 
----
-
+# Production 3
 
 -->
 B A A
@@ -95,7 +106,7 @@ B A A C B
 4 c 5
 --<
 
----
+# Production 4
 
 -->
 A A A
@@ -121,10 +132,3 @@ A A A B C A A
 5 b 6
 6 a 7
 --<
-
-
-
-
-
-
-
