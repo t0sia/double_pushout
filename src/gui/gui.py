@@ -124,13 +124,13 @@ class Matty(BoxLayout):
 
     def submit(self, instance):
         indexes = list(map(int,self.indexinput.text.split(',')))
-        self.box1.remove_widget(self.graphplot)
         try:
             dpo(self.main_graph, self.prod_list[self.prod_choice], indexes)
+            self.box1.remove_widget(self.graphplot)
+            self.graphplot = FigureCanvasKivyAgg(self.main_graph.visualize())
+            self.box1.add_widget(self.graphplot)
         except TypeError:
             self.alert.open()
-        self.graphplot = FigureCanvasKivyAgg(self.main_graph.visualize())
-        self.box1.add_widget(self.graphplot)
         #updategui()
 
 
