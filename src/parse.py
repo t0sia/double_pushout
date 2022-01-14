@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-from structures import Grammar, Graph, Production
+from src.structures import Grammar, Graph, Production
 
 def get_breaks(f):
     breaks = []

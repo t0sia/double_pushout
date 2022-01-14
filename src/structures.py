@@ -54,7 +54,7 @@ class Graph:
         nx.draw_networkx_edge_labels(G, pos, edges)
         return plt.gcf()
 
-        def remove(self, i):
+    def remove(self, i):
         self.v_labels.pop(i)
         self.adjacency_list.pop(i)
         for v in self.adjacency_list:
