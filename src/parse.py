@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 from src.structures import Grammar, Graph, Production
 
+
 def get_breaks(f):
     breaks = []
     for i, line in f:
@@ -68,7 +69,7 @@ def get_graph(f, labels, indexes, start, stop):
 def parse(f):
     ef = list(enumerate(f))
     breaks = get_breaks(ef)
-    G = get_graph(ef, breaks[0][0], breaks[0][1], breaks[0][2], breaks[0][3] )
+    G = get_graph(ef, breaks[0][0], breaks[0][1], breaks[0][2], breaks[0][3])
 
     prods = []
     lkr = []

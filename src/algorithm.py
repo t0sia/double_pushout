@@ -1,4 +1,4 @@
-from src.structures import Graph, Production, Grammar
+from src.structures import Graph, Production
 from copy import deepcopy
 
 
