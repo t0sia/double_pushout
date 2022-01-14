@@ -45,7 +45,7 @@ class Matty(BoxLayout):
         self.add_widget(lay1)
         self.box1 = BoxLayout()
         self.box2 = BoxLayout(orientation='vertical')
-        self.prodlabel = Label(text="Production: 0")
+        self.prodlabel = Label(text="Production: 1")
         self.indexinput = TextInput(size_hint=(1,0.3))   #indeksy wpisane po przecinku na przykład 3,4,2,1
         self.submitbuttton = Button(text="Submit")
         self.submitbuttton.bind(on_press=self.submit)
@@ -79,7 +79,7 @@ class Matty(BoxLayout):
 
     def press(self, instance):
         self.prod_choice = instance.prod_num
-        self.prodlabel.text = "Production: "+str(instance.prod_num)
+        self.prodlabel.text = "Production: "+str(instance.prod_num+1)
 
     def submit(self, instance):
         indexes = list(map(int,self.indexinput.text.split(',')))
