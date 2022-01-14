@@ -14,48 +14,7 @@ from src.algorithm import dpo
 from src.parse import parse
 from kivy.uix.popup import Popup
 
-G = Graph(
-    {0: "A", 1: "B", 2: "C"},
-    {
-        0: [(1, "a"), (2, "b")],
-        1: [(0, "a"), (2, "c")],
-        2: [(0, "b"), (1, "c")]
-    })
 
-D = Graph(
-    {0: "D", 1: "E", 2: "F"},
-    {
-        0: [(1, "a"), (2, "b")],
-        1: [(0, "a"), (2, "c")],
-        2: [(0, "b"), (1, "c")]
-    })
-
-# produkcje przykladowe
-L = Graph(
-    {0: "D", 1: "E", 2: "F"},
-    {
-        0: [(1, "a"), (2, "b")],
-        1: [(0, "a"), (2, "c")],
-        2: [(0, "b"), (1, "c")]
-    })
-
-K = Graph(
-    {0: "D", 1: "E", 2: "F"},
-    {
-        0: [(1, "a"), (2, "b")],
-        1: [(0, "a"), (2, "c")],
-        2: [(0, "b"), (1, "c")]
-    })
-
-R = Graph(
-    {0: "D", 1: "E", 2: "F"},
-    {
-        0: [(1, "a"), (2, "b")],
-        1: [(0, "a"), (2, "c")],
-        2: [(0, "b"), (1, "c")]
-    })
-
-pr = Production(L,K,R)
 """
 class GraphProd(BoxLayout):
     def __init__(self, prod, **kwargs):
