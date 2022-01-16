@@ -20,10 +20,10 @@ def check_node(graph: Graph, prod: Graph, v, u, prod_dict, A):
 
 def check_if_right(G: Graph, L: Graph, Nodes, L_dict, A):
     if len(Nodes) != len(L.adjacency_list):
-        raise TypeError("Incorrect number of vertexes.")
+        raise ValueError("Incorrect number of vertexes.")
     for i in range(len(Nodes)):
         if not check_node(G, L, Nodes[i], L_dict[i], L_dict, A):
-            raise TypeError("Incorrect order of vertexes or vertexes.")
+            raise ValueError("Incorrect order of vertexes or vertexes.")
     return True
 
 
