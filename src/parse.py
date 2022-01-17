@@ -31,7 +31,7 @@ def read_vlabels(f, labels, indexes):
 def read_edges(f, start, stop):
     edges = []
     for i, line in f:
-        if i >= start and i <= stop:
+        if start <= i <= stop:
             edges.append(get_edge(line))
     return edges
 
@@ -84,7 +84,7 @@ def parse(f):
     return Grammar(G, prods)
 
 
-# test co
+# test
 if __name__ == "__main__":
 
     with open("ex2.txt") as f:

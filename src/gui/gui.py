@@ -27,26 +27,26 @@ class GraphProd(BoxLayout):
 
 class Matty(BoxLayout):
 
-    def __init__(self, **kwargs):
+    def __init__(self, filename, **kwargs):
         super().__init__(**kwargs)
-        with open("..\ex1.txt") as f:
+        with open(filename) as f:
             grammar = parse(f)
             self.main_graph = grammar.input_graph
             self.previous_graph = deepcopy(self.main_graph)
             self.prod_list = grammar.production_list
         lay1 = BoxLayout(orientation='horizontal')
-        self.prod_choice = 0  # która produkcja
-        self.buttons = []  # lista buttonów
+        self.prod_choice = 0  # which production
+        self.buttons = []  # button list
         self.add_widget(lay1)
         self.box1 = BoxLayout()
         self.box2 = BoxLayout(orientation='vertical')
         self.prodlabel = Label(text="Production: 1")
-        self.indexinput = TextInput(size_hint=(1, 0.3))  # indeksy wpisane po przecinku na przykład 3,4,2,1
-        self.submitbuttton = Button(text="Submit",font_size=14)
+        self.indexinput = TextInput(size_hint=(1, 0.3))  # indexes separated with commas 3,4,2,1
+        self.submitbuttton = Button(text="Submit", font_size=14)
         self.submitbuttton.bind(on_press=self.submit)
         lay1.add_widget(self.box1)
         lay1.add_widget(self.box2)
-        self.previousbutton = Button(text="Previous graph",font_size=14)
+        self.previousbutton = Button(text="Previous graph", font_size=14)
         self.previousbutton.bind(on_press=self.previous)
         self.box2.add_widget(self.prodlabel)
         self.box2.add_widget(self.indexinput)
@@ -99,10 +99,15 @@ class Matty(BoxLayout):
             self.graphplot = FigureCanvasKivyAgg(self.main_graph.visualize())
             self.box1.add_widget(self.graphplot)
 
+
 class GraphApp(App):
+    def __init__(self, filename, **kwargs):
+        super().__init__(**kwargs)
+        self.filename = filename
+
     def build(self):
-        return Matty()
+        return Matty(self.filename)
 
 
 if __name__ == '__main__':
-    GraphApp().run()
+    GraphApp('../ex1.txt').run()
