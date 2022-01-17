@@ -1,4 +1,4 @@
-# TiAG_project
+# Double Pushout Graph Rewriting
 Project concerning double pushout graph rewriting for Graph Transformations and Graph Algorithms 2021/22
 <br></br>
 ## Authors
@@ -17,8 +17,9 @@ Project concerning double pushout graph rewriting for Graph Transformations and 
   - implementation of [structures](src/structures.py)
   - project management and content supervision
 <br></br>
+
 ## Models of transformations
-Project presents four simulations of graph transformations.
+Project files contains four example graph grammars concerning graph transformations.
 <p align="center">
   <img src="./TiAG-example/example1.jpg" alt="addStat" width="400" height ="500" />
   <img src="./TiAG-example/example2.jpg" alt="addStat" width="400" height ="500" />
