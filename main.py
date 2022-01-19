@@ -1,4 +1,4 @@
-from gui.gui import GraphApp
+from src.gui.gui import GraphApp
 
 
 if __name__ == "__main__":

@@ -1,3 +1,5 @@
+# note that lines starting with "#" are ignored
+
 # Graph:
 #   -->
 #   labels
