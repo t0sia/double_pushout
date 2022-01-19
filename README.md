@@ -32,11 +32,16 @@ To run the program you should:
 One should put indexes of vertices they want to conduct a production on:
 - in the order corresponding to indexes of vertices in the left hand side of the production in ascending order
 - separated with commas
+
+[Example of a proper input to a production](use_example.jpg)
 <br></br>
 ## Input file format
+[Example of an input file](src/input_files/ex1.txt)
+<br></br>
 File:
 - Input Graph
 - Productions
+- NEWLINE AT THE END
 <br></br>
 where:
   - Graph:
