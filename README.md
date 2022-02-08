@@ -1,5 +1,5 @@
 # Double Pushout Graph Rewriting
-Project concerning double pushout graph rewriting for Graph Transformations and Graph Algorithms 2021/22.
+Project concerning double pushout graph rewriting made for Graph Transformations and Graph Algorithms at AGH UST 2021/22.
 <br></br>
 ## Authors
 ### Antonina Kuś
