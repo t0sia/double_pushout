@@ -2,18 +2,18 @@
 Project concerning double pushout graph rewriting made for Graph Transformations and Graph Algorithms at AGH UST 2021/22.
 <br></br>
 ## Authors
-### Antonina Kuś
+### [Antonina Kuś](https://github.com/t0sia)
   - implementation of [double pushout algorithm](src/algorithm.py)
   - implementation of [structures](src/structures.py)
-### Dominika Bocheńczyk
+### [Dominika Bocheńczyk](https://github.com/domkvv)
   - implementation of [parsing data from files](src/parse.py)
   - preparation of [input files](src/input_files)
-### Kamil Miśkowiec 
+### [Kamil Miśkowiec](https://github.com/miskowieck) 
   - implementation of [graphical user interface](src/gui/gui.py)
-### Monika Pyrek
+### [Monika Pyrek](https://github.com/mpyrek)
   - preparation of [transformations examples](TiAG-example)
   - preparation of [input files](src/input_files)
-### Piotr Magiera
+### [Piotr Magiera](https://github.com/piotmag769)
   - implementation of [structures](src/structures.py)
   - project management and content supervision
 <br></br>
