@@ -60,12 +60,12 @@ where:
 ## Models of transformations
 Project files contain four example graph grammars concerning graph transformations.
 <p align="center">
-  <img src="./TiAG-example/example1.jpg" alt="addStat" width="400" height ="500" />
-  <img src="./TiAG-example/example2.jpg" alt="addStat" width="400" height ="500" />
+  <img src="./TiAG-example/ex1jpg.jpg" alt="addStat" width="400" height ="500" />
+  <img src="./TiAG-example/ex2jpg.jpg" alt="addStat" width="400" height ="500" />
   <br /> 
 </p>
 <p align="center">
-  <img src="./TiAG-example/example3.jpg" alt="addStat" width="400" height ="500" />
-  <img src="./TiAG-example/example4.jpg" alt="addStat" width="400" height ="500" />
+  <img src="./TiAG-example/ex3jpg.jpg" alt="addStat" width="400" height ="500" />
+  <img src="./TiAG-example/ex4jpg.jpg" alt="addStat" width="400" height ="500" />
   <br /> 
 </p>
