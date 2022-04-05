@@ -1,19 +1,19 @@
 # Double Pushout Graph Rewriting
-Project concerning double pushout graph rewriting for Graph Transformations and Graph Algorithms 2021/22.
+Project concerning double pushout graph rewriting made for Graph Transformations and Graph Algorithms at AGH UST 2021/22.
 <br></br>
 ## Authors
-### Antonina Kuś
+### [Antonina Kuś](https://github.com/t0sia)
   - implementation of [double pushout algorithm](src/algorithm.py)
   - implementation of [structures](src/structures.py)
-### Dominika Bocheńczyk
+### [Dominika Bocheńczyk](https://github.com/domkvv)
   - implementation of [parsing data from files](src/parse.py)
   - preparation of [input files](src/input_files)
-### Kamil Miśkowiec 
+### [Kamil Miśkowiec](https://github.com/miskowieck) 
   - implementation of [graphical user interface](src/gui/gui.py)
-### Monika Pyrek
+### [Monika Pyrek](https://github.com/mpyrek)
   - preparation of [transformations examples](TiAG-example)
   - preparation of [input files](src/input_files)
-### Piotr Magiera
+### [Piotr Magiera](https://github.com/piotmag769)
   - implementation of [structures](src/structures.py)
   - project management and content supervision
 <br></br>
@@ -58,14 +58,15 @@ where:
     - Graph
 <br></br>
 ## Models of transformations
+
 Project files contain four example graph grammars concerning graph transformations.
 <p align="center">
-  <img src="./TiAG-example/example1.jpg" alt="addStat" width="400" height ="500" />
-  <img src="./TiAG-example/example2.jpg" alt="addStat" width="400" height ="500" />
+  <img src="./TiAG-example/ex1jpg.jpg" alt="addStat" width="400" height ="200" />
+  <img src="./TiAG-example/ex2jpg.jpg" alt="addStat" width="400" height ="200" />
   <br /> 
 </p>
 <p align="center">
-  <img src="./TiAG-example/example3.jpg" alt="addStat" width="400" height ="500" />
-  <img src="./TiAG-example/example4.jpg" alt="addStat" width="400" height ="500" />
+  <img src="./TiAG-example/ex3jpg.jpg" alt="addStat" width="400" height ="200" />
+  <img src="./TiAG-example/ex4jpg.jpg" alt="addStat" width="400" height ="200" />
   <br /> 
 </p>
